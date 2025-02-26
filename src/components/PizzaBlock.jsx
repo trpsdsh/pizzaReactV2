@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function PizzaBlock({title, price}) {
-  const [pizzaButton, setPizzaButton] = useState(0);
+  const [pizzaButton, setPizzaButton] = React.useState(0);
 
   const onClickAdd = () =>{
     setPizzaButton(pizzaButton +1);
