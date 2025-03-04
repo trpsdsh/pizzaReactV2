@@ -1,31 +1,38 @@
 import React from 'react';
 
-function PizzaBlock({title, price}) {
-  const [pizzaButton, setPizzaButton] = React.useState(0);
-
-  const onClickAdd = () =>{
-    setPizzaButton(pizzaButton +1);
-  }
-
-
+function PizzaBlock({ title, price, image, sizes, types }) {
+  const [pizzaCount, setPizzaCount] = React.useState(0);
+  const [activeType, setActiveType] = React.useState(0);
+  const [activeSize, setActiveSize] = React.useState(0);
+  const typeNames = ['Традиционное', 'Тонкое'];
+  const onClickAdd = () => {
+    setPizzaCount(pizzaCount + 1);
+  };
 
   return (
     <div className='pizza-block'>
-      <img
-        className='pizza-block__image'
-        src='https://media.dodostatic.net/image/r:292x292/0194d4f6904975a5a6427e297591980d.jpg'
-        alt='Pizza'
-      />
+      <img className='pizza-block__image' src={image} alt='Pizza' />
       <h4 className='pizza-block__title'>{title}</h4>
       <div className='pizza-block__selector'>
         <ul>
-          <li className='active'>тонкое</li>
-          <li>традиционное</li>
+          {types.map((typeId) => (
+            <li
+              key={typeId}
+              onClick={() => setActiveType(typeId)}
+              className={activeType === typeId ? 'active' : ''}>
+              {typeNames[typeId]}
+            </li>
+          ))}
         </ul>
         <ul>
-          <li className='active'>26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {sizes.map((size, i) => (
+            <li
+              key={size}
+              onClick={() => setActiveSize(i)}
+              className={activeSize === i ? 'active' : ''}>
+              {size} см{' '}
+            </li>
+          ))}
         </ul>
       </div>
       <div className='pizza-block__bottom'>
@@ -43,7 +50,7 @@ function PizzaBlock({title, price}) {
             />
           </svg>
           <span>Добавить</span>
-          <i>{pizzaButton}</i>
+          <i>{pizzaCount}</i>
         </div>
       </div>
     </div>

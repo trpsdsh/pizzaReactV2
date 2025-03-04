@@ -1,13 +1,14 @@
 {
-  "homepage": "https://trpsdsh.github.io/PizzaReact/",
+  "homepage": "",
   "name": "pizza2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^19.0.0",
+    "react-content-loader": "^7.0.2",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
-    "sass": "^1.83.4"
+    "sass": "^1.85.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -36,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",
     "gh-pages": "^6.3.0",
