@@ -16,7 +16,7 @@ const Home = () => {
       });
   }, []);
   return (
-    <>
+    <div className='container'>
       <div className='content__top'>
         <Categories />
         <Sort />
@@ -37,7 +37,7 @@ const Home = () => {
             ))}
         {/* {...obj} можно вместо title={obj.title} spreadsyntax */}
       </div>
-    </>
+    </div>
   );
 };
 
