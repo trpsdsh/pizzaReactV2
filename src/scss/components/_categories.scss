@@ -1,8 +1,14 @@
 @import '../variables';
 
 .categories {
+  width: 825px;
+  overflow-x: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   ul {
     display: flex;
+
 
     li {
       background-color: #f9f9f9;
