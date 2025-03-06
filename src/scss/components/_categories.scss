@@ -21,11 +21,11 @@
       @include noselect();
 
       &:hover {
-        background-color: darken(#f9f9f9, 2%);
+        background-color: rgb(244, 244, 244);;
       }
 
       &:active {
-        background-color: darken(#f9f9f9, 5%);
+        background-color: rgb(244, 244, 244);;
       }
 
       &.active {
