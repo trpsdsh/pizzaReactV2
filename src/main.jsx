@@ -6,7 +6,7 @@ import App from './App';
 const rootElement = document.getElementById('root');
 const root = ReactDOM.createRoot(rootElement);
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={import.meta.env.BASE_URL}>
     <App />
   </BrowserRouter>,
 );
