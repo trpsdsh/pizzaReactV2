@@ -1,9 +1,42 @@
+h1 {
+  text-align: center;
+}
+
 .root {
+  display: flex;
+  flex-direction: column;
   padding: 150px 0;
   max-width: 800px;
   margin: 0 auto;
-  text-align: center;
+  align-items: center;
 }
+
 .description {
   font-size: 24px;
+  margin-bottom: 50px;
+}
+
+.button {
+  display: flex;
+  background-color: #fff;
+  border-radius: 30px;
+  padding: 10px 20px;
+  padding-bottom: 12px;
+  width: 210px;
+  min-width: 100px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  border: 1px solid rgb(220.5, 220.5, 220.5);
+  justify-content: center;
+  &:hover {
+    background-color: #000;
+    color: #fe5f1e;
+  }
+}
+
+.buttonText {
+  color: #c3c3c3;
+  padding-left: 10px;
 }

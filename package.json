@@ -12,10 +12,12 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
     "directory-tree-ascii": "^1.0.10",
     "react": "^19.0.0",
     "react-content-loader": "^7.0.2",
     "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
     "react-router": "^7.2.0",
     "react-router-dom": "^7.2.0",
     "sass": "^1.85.1",
