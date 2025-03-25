@@ -16,6 +16,7 @@
     "axios": "^1.8.3",
     "directory-tree-ascii": "^1.0.10",
     "lodash.debounce": "^4.0.8",
+    "qs": "^6.14.0",
     "react": "^19.0.0",
     "react-content-loader": "^7.0.2",
     "react-dom": "^19.0.0",

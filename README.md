@@ -1,6 +1,6 @@
-NotFoundBlock | Стилизовать кнопку
-Решить ошибку поиска
-Стили уехали
+## NotFoundBlock | Стилизовать кнопку
+## Решить ошибку поиска
+## Стили уехали
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
