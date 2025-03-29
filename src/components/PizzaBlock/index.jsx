@@ -22,7 +22,6 @@ const addedCount = cartItem ? cartItem.count : 0
       size:  sizes[activeSize],
     };
     dispatch(addItem(item))
-    console.log('норм')
   };
 
   return (

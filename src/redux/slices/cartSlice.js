@@ -29,6 +29,7 @@ const cartSlice = createSlice({
     },
     clearItem(state) {
       state.items = [];
+      state.totalPrice=0
     },
     onClickDecrease(state,action){
       const findItem = state.items.find((obj) => obj.id === action.payload.id);

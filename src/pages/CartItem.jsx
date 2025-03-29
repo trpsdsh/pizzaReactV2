@@ -12,7 +12,7 @@ const CartItem = ({ id, title, price, image, count, type, size }) => {
     dispatch(onClickDecrease({id}));
   };
   const onClickRemove = () => {
-    dispatch(removeItem(id));
+    dispatch(removeItem(id, price));
   };
   return (
     <div className='cart__item'>

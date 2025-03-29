@@ -283,9 +283,14 @@ body {
   }
 
   &--empty {
+    height: 70vh;
     margin: 0 auto;
     width: 560px;
     text-align: center;
+    display: flex;
+    align-content: flex-start;
+    justify-content: center;
+    flex-direction: column;
 
     h2 {
       font-size: 32px;
@@ -301,7 +306,7 @@ body {
 
     icon {
       position: relative;
-      top: 2px;
+      top: 2px; 
     }
 
     img {

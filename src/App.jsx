@@ -7,6 +7,8 @@ import NotFound from './pages/NotFound';
 
 import './scss/app.scss';
 
+
+
 export const searchContext = React.createContext();
 
 function App() {
