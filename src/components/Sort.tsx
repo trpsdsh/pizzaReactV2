@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setSort } from '../redux/slices/filterSlice';
+import { selectFilterSort, setSort } from '../redux/slices/filterSlice';
 
-export const sortList = [
+type SortListType = {
+  name: string;
+  sortProperty: string;
+  order: string;
+};
+export const sortList:SortListType[] = [
   { name: 'Популярности ↓', sortProperty: 'rating', order: 'desc' },
   { name: 'Популярности ↑', sortProperty: 'rating', order: 'asc' },
   { name: 'Цене ↓', sortProperty: 'price', order: 'desc' },
@@ -14,18 +19,18 @@ export const sortList = [
 
 function Sort() {
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.sort);
-  const sortRef = React.useRef();
+  const sort = useSelector(selectFilterSort);
+  const sortRef = React.useRef(null);
 
   const [open, setOpen] = React.useState(false);
 
-  const onClickListItem = (obj) => {
+  const onClickListItem = (obj:SortListType) => {
     dispatch(setSort(obj));
     setOpen(false);
   };
 
   React.useEffect(() => {
-    const sortCloser = (event) => {
+    const sortCloser = (event:any) => {
       const path = event.composedPath ? event.composedPath() : event.path; // event.path не работает ◉_◉
       if (!path.includes(sortRef.current)) {
         setOpen(false);

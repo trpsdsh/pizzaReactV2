@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { act } from 'react';
 
 export const fetchPizzas = createAsyncThunk('pizza/fetchPizzasById', async (params) => {
   const { category, search, currentPage, sortType } = params;

@@ -1,57 +1,58 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItem, selectCartItem } from '../../redux/slices/cartSlice';
-
+import { Link } from 'react-router';
 function PizzaBlock({ id, title, price, image, sizes, types }) {
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
   const typeNames = ['Традиционное', 'Тонкое'];
 
-const cartItem = useSelector(selectCartItem(id))
-const addedCount = cartItem ? cartItem.count : 0
-
+  const cartItem = useSelector(selectCartItem(id));
+  const addedCount = cartItem ? cartItem.count : 0;
 
   const dispatch = useDispatch();
   const onClickAdd = () => {
     const item = {
       id,
-      title, 
+      title,
       price,
       image,
       type: typeNames[activeType],
-      size:  sizes[activeSize],
+      size: sizes[activeSize],
     };
-    dispatch(addItem(item))
+    dispatch(addItem(item));
   };
 
   return (
     <div className='pizza-block'>
-      <div className='pizza-block__wrapper'>
-        <img className='pizza-block__image' src={image} alt='Pizza' />
-        <h4 className='pizza-block__title'>{title}</h4>
-        <div className='pizza-block__selector'>
-          <ul>
-            {types.map((typeId) => (
-              <li
-                key={typeId}
-                onClick={() => setActiveType(typeId)}
-                className={activeType === typeId ? 'active' : ''}>
-                {typeNames[typeId]}
-              </li>
-            ))}
-          </ul>
-          <ul>
-            {sizes.map((size, i) => (
-              <li
-                key={size}
-                onClick={() => setActiveSize(i)}
-                className={activeSize === i ? 'active' : ''}>
-                {size} см{' '}
-              </li>
-            ))}
-          </ul>
+      <Link to={`pizza/${id}`}>
+        <div className='pizza-block__wrapper'>
+          <img className='pizza-block__image' src={image} alt='Pizza' />
+          <h4 className='pizza-block__title'>{title}</h4>
+          <div className='pizza-block__selector'>
+            <ul>
+              {types.map((typeId) => (
+                <li
+                  key={typeId}
+                  onClick={() => setActiveType(typeId)}
+                  className={activeType === typeId ? 'active' : ''}>
+                  {typeNames[typeId]}
+                </li>
+              ))}
+            </ul>
+            <ul>
+              {sizes.map((size, i) => (
+                <li
+                  key={size}
+                  onClick={() => setActiveSize(i)}
+                  className={activeSize === i ? 'active' : ''}>
+                  {size} см{' '}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </Link>
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>от {price} ₽</div>
         <button onClick={onClickAdd} className='button button--outline button--add'>
@@ -67,7 +68,7 @@ const addedCount = cartItem ? cartItem.count : 0
             />
           </svg>
           <span>Добавить</span>
-          {addedCount > 0 &&<i>{cartItem.count}</i>}
+          {addedCount > 0 && <i>{cartItem.count}</i>}
         </button>
       </div>
     </div>

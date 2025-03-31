@@ -45,9 +45,7 @@ const Home = () => {
     window.scrollTo(0, 0);
   };
   const pizzasArray = items.map((obj) => (
-    <Link key={obj.id} to={`pizza/${obj.id}`}>
-      <PizzaBlock  {...obj} />
-    </Link> //spreadsyntax
+    <PizzaBlock  key={obj.id} {...obj} />//spreadsyntax
   ));
 
   const onClickCategory = (id) => {

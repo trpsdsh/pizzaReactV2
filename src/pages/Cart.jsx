@@ -81,7 +81,6 @@ const Cart = () => {
                 strokeLinecap='round'
                 strokeLinejoin='round'></path>
             </svg>
-
             <span>Очистить корзину</span>
           </div>
         </div>
