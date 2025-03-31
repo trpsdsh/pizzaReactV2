@@ -1,14 +1,16 @@
-import React, { DO_NOT_USE_OR_YOU_WILL_BE_FIRED_EXPERIMENTAL_REACT_NODES } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
 
-import { selectFilterSort, setSort } from '../redux/slices/filterSlice';
+import { useSelector } from 'react-redux';
+import { selectFilter, setSort } from '../redux/slices/filterSlice';
+import { useAppDispatch } from '../redux/store';
 
 type SortListType = {
   name: string;
   sortProperty: string;
   order: string;
 };
-export const sortList:SortListType[] = [
+
+export const sortList: SortListType[] = [
   { name: 'Популярности ↓', sortProperty: 'rating', order: 'desc' },
   { name: 'Популярности ↑', sortProperty: 'rating', order: 'asc' },
   { name: 'Цене ↓', sortProperty: 'price', order: 'desc' },
@@ -18,26 +20,27 @@ export const sortList:SortListType[] = [
 ];
 
 function Sort() {
-  const dispatch = useDispatch();
-  const sort = useSelector(selectFilterSort);
+  const dispatch = useAppDispatch();
+  const { sort } = useSelector(selectFilter);
   const sortRef = React.useRef(null);
-
   const [open, setOpen] = React.useState(false);
 
-  const onClickListItem = (obj:SortListType) => {
+  const onClickListItem = (obj: SortListType) => {
     dispatch(setSort(obj));
     setOpen(false);
   };
 
   React.useEffect(() => {
-    const sortCloser = (event:any) => {
-      const path = event.composedPath ? event.composedPath() : event.path; // event.path не работает ◉_◉
-      if (!path.includes(sortRef.current)) {
+    const sortCloser = (event: MouseEvent) => {
+      const path = event.composedPath();
+      if (sortRef.current && !path.includes(sortRef.current)) {
         setOpen(false);
       }
     };
     document.body.addEventListener('click', sortCloser);
-    return () => document.body.removeEventListener('click', sortCloser);
+    return () => {
+      document.body.removeEventListener('click', sortCloser);
+    };
   }, []);
 
   return (
