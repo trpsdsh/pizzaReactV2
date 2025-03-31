@@ -1,8 +1,19 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addItem, selectCartItem } from '../../redux/slices/cartSlice';
+import { useSelector } from 'react-redux';
+import { addItem, CartItem, selectCartItem } from '../../redux/slices/cartSlice';
 import { Link } from 'react-router';
-function PizzaBlock({ id, title, price, image, sizes, types }) {
+import { useAppDispatch } from '../../redux/store';
+
+type PizzaBlockType = {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  count: number;
+  types: number[];
+  sizes: number[];
+};
+const PizzaBlock: React.FC<PizzaBlockType> = ({ id, title, price, image, sizes, types }) => {
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
   const typeNames = ['Традиционное', 'Тонкое'];
@@ -10,15 +21,16 @@ function PizzaBlock({ id, title, price, image, sizes, types }) {
   const cartItem = useSelector(selectCartItem(id));
   const addedCount = cartItem ? cartItem.count : 0;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const onClickAdd = () => {
-    const item = {
+    const item: CartItem = {
       id,
       title,
       price,
       image,
-      type: typeNames[activeType],
-      size: sizes[activeSize],
+      types: typeNames[activeType],
+      sizes: sizes[activeSize],
+      count: 0,
     };
     dispatch(addItem(item));
   };
@@ -68,10 +80,10 @@ function PizzaBlock({ id, title, price, image, sizes, types }) {
             />
           </svg>
           <span>Добавить</span>
-          {addedCount > 0 && <i>{cartItem.count}</i>}
+          {addedCount > 0 && <i>{cartItem?.count}</i>}  
         </button>
       </div>
     </div>
   );
-}
+};
 export default PizzaBlock;

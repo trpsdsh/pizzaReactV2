@@ -4,9 +4,9 @@ import { Link, useLocation } from 'react-router-dom';
 import Search from './Search';
 import { selectCart } from '../redux/slices/cartSlice';
 
-function Header() {
+const Header = () => {
   const { items, totalPrice } = useSelector(selectCart);
-  const cartCount = items.reduce((sum:number, item:any) => sum + item.count, 0);
+  const cartCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
   const location = useLocation();
   return (
     <div className='header'>
@@ -61,6 +61,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

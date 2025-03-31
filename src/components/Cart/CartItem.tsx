@@ -1,25 +1,34 @@
 import React from 'react';
-import { addItem, onClickDecrease, removeItem } from '../../redux/slices/cartSlice';
-import { useDispatch } from 'react-redux';
+import { addItem, CartItem, onClickDecrease, removeItem } from '../../redux/slices/cartSlice';
+import { useAppDispatch } from '../../redux/store';
 
-const CartItem = ({ id, title, price, image, count, type, size }) => {
-  const dispatch = useDispatch();
+type CartItemType = {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  count: number;
+  type: string;
+  size: number;
+};
+const CartItemBlock: React.FC<CartItemType> = ({ id, title, price, image, count, type, size }) => {
+  const dispatch = useAppDispatch();
 
   const onClickInc = () => {
-    dispatch(addItem({ id }));
+    dispatch(addItem({ id } as CartItem));
   };
   const onClickDec = () => {
-    dispatch(onClickDecrease({id}));
+    dispatch(onClickDecrease({ id } as CartItem));
   };
   const onClickRemove = () => {
-    dispatch(removeItem(id, price));
+    dispatch(removeItem(id));
   };
   return (
     <div className='cart__item'>
       <div className='cart__item-img'>
         <img className='pizza-block__image' src={image} alt='Pizza' />
       </div>
-      <div className='cart__item-info'> 
+      <div className='cart__item-info'>
         <h3>{title}</h3>
         <p>
           {type}, {size} см.
@@ -86,4 +95,4 @@ const CartItem = ({ id, title, price, image, count, type, size }) => {
   );
 };
 
-export default CartItem;
+export default CartItemBlock;

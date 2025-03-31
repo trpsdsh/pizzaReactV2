@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import CartItem from '../components/Cart//CartItem';
+import { useSelector } from 'react-redux';
+import CartItemBlock from '../components/Cart/CartItem';
 import { clearItem, selectCart } from '../redux/slices/cartSlice';
-import CartEmpty from '../components/Cart/CartEmpty'
+import CartEmpty from '../components/Cart/CartEmpty';
+import { useAppDispatch } from '../redux/store';
 
-const Cart = () => {
-  const {items, totalPrice} = useSelector(selectCart);
-  const dispatch = useDispatch();
+const Cart: React.FC = () => {
+  const { items, totalPrice } = useSelector(selectCart);
+  const dispatch = useAppDispatch();
 
   const onClickClear = () => {
-    dispatch(clearItem())
-  }
-  const cartCount = items.reduce((sum, item) => sum + item.count, 0);
+    dispatch(clearItem());
+  };
+  const cartCount = items.reduce((sum: number, item: any) => sum + item.count, 0);
 
-  if(!totalPrice){
-      return <CartEmpty/>
+  if (!totalPrice) {
+    return <CartEmpty />;
   }
   return (
     <div className='container container--cart'>
@@ -85,8 +86,8 @@ const Cart = () => {
           </div>
         </div>
         <div className='content__items'>
-          {items.map((item) => (
-            <CartItem key={item.id} {...item} />
+          {items.map((item: any) => (
+            <CartItemBlock key={item.id} {...item} />
           ))}
         </div>
         <div className='cart__bottom'>

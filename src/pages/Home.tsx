@@ -1,24 +1,27 @@
 import React from 'react';
 import qs from 'qs';
-import { Link, useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { useNavigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import {
+  selectFilter,
+  setCategoryId,
+  setCurrentPage,
+  setFilters,
+} from '../redux/slices/filterSlice';
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
-import Pagination from '../Pagination';
-import { fetchPizzas, selectPizza } from '../redux/slices/pizzaSlice';
+import Pagination from '../components/Pagination';
+import { fetchPizzas, selectPizza, StatusPizza } from '../redux/slices/pizzaSlice';
 import NotFoundBlock from '../components/NotFoundBlock';
+import { useAppDispatch } from '../redux/store';
 
-const Home = () => {
+const Home: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const categoryId = useSelector((state) => state.filter.categoryId);
-  const sortType = useSelector((state) => state.filter.sort);
-  const currentPage = useSelector((state) => state.filter.currentPage);
-  const searchValue = useSelector((state) => state.filter.searchValue);
+  const { categoryId, sort: sortType, currentPage, searchValue } = useSelector(selectFilter);
 
   const { items, status } = useSelector(selectPizza);
 
@@ -44,16 +47,16 @@ const Home = () => {
     );
     window.scrollTo(0, 0);
   };
-  const pizzasArray = items.map((obj) => (
-    <PizzaBlock  key={obj.id} {...obj} />//spreadsyntax
+  const pizzasArray = items.map((obj: any) => (
+    <PizzaBlock key={obj.id} {...obj} /> //spreadsyntax
   ));
 
-  const onClickCategory = (id) => {
+  const onClickCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   React.useEffect(() => {
@@ -64,6 +67,9 @@ const Home = () => {
         setFilters({
           ...params,
           sort: sortType,
+          searchValue: '',
+          categoryId: 0,
+          currentPage: 1,
         }),
       );
       isSearch.current = true;
@@ -90,7 +96,7 @@ const Home = () => {
         <Sort />
       </div>
       <h2 className='content__title'>Все пиццы</h2>
-      {status === 'error' ? (
+      {status === StatusPizza.REJECTED ? (
         <NotFoundBlock />
       ) : (
         <div className='content__items'>{status === 'loading' ? pizzasSkeleton : pizzasArray}</div>
