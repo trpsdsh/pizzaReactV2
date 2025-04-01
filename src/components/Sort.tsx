@@ -18,8 +18,7 @@ export const sortList: SortListType[] = [
   { name: 'Алфавиту ↓', sortProperty: 'title', order: 'desc' },
   { name: 'Алфавиту ↑', sortProperty: 'title', order: 'asc' },
 ];
-
-function Sort() {
+export const Sort: React.FC = () => {
   const dispatch = useAppDispatch();
   const { sort } = useSelector(selectFilter);
   const sortRef = React.useRef(null);
@@ -78,6 +77,4 @@ function Sort() {
       )}
     </div>
   );
-}
-
-export default Sort;
+};

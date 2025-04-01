@@ -13,7 +13,7 @@ type PizzaBlockType = {
   types: number[];
   sizes: number[];
 };
-const PizzaBlock: React.FC<PizzaBlockType> = ({ id, title, price, image, sizes, types }) => {
+export const PizzaBlock: React.FC<PizzaBlockType> = ({ id, title, price, image, sizes, types }) => {
   const [activeType, setActiveType] = React.useState(0);
   const [activeSize, setActiveSize] = React.useState(0);
   const typeNames = ['Традиционное', 'Тонкое'];
@@ -37,10 +37,12 @@ const PizzaBlock: React.FC<PizzaBlockType> = ({ id, title, price, image, sizes, 
 
   return (
     <div className='pizza-block'>
-      <Link to={`pizza/${id}`}>
+
         <div className='pizza-block__wrapper'>
+        <Link to={`pizza/${id}`}>
           <img className='pizza-block__image' src={image} alt='Pizza' />
           <h4 className='pizza-block__title'>{title}</h4>
+          </Link>
           <div className='pizza-block__selector'>
             <ul>
               {types.map((typeId) => (
@@ -64,7 +66,7 @@ const PizzaBlock: React.FC<PizzaBlockType> = ({ id, title, price, image, sizes, 
             </ul>
           </div>
         </div>
-      </Link>
+
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>от {price} ₽</div>
         <button onClick={onClickAdd} className='button button--outline button--add'>
@@ -86,4 +88,3 @@ const PizzaBlock: React.FC<PizzaBlockType> = ({ id, title, price, image, sizes, 
     </div>
   );
 };
-export default PizzaBlock;

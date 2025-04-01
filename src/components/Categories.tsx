@@ -5,7 +5,7 @@ type CategoriesType = {
   onClickCategory: (value:number) => void;
 };
 
-const Categories: React.FC<CategoriesType> = ({ value, onClickCategory }) => {
+export const Categories: React.FC<CategoriesType> = ({ value, onClickCategory }) => {
   const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   return (
@@ -20,5 +20,3 @@ const Categories: React.FC<CategoriesType> = ({ value, onClickCategory }) => {
     </div>
   );
 };
-
-export default Categories;
